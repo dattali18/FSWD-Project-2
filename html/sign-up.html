@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/forms.css" />
 
-    <title>Sign In</title>
+    <script src="../js/signUp.js" defer></script>
+
+    <title>Sign Up</title>
   </head>
   <body>
     <header>
@@ -60,7 +62,7 @@
         </div>
         <ul class="nav-utils text-white">
           <li>
-            <a href="login.html">
+            <a href="sign-in.html">
               <i class="fa-solid fa-user"></i>
               Sign In
             </a>
@@ -76,8 +78,8 @@
     </header>
     <main>
       <div class="form-container">
-        <form action="">
-          <legend>Sign In</legend>
+        <form action="" id="sign-up">
+          <legend>Sign Up</legend>
           <div class="input-container">
             <input
               placeholder="username"
@@ -95,6 +97,14 @@
               type="password"
               name="password"
               id="password"
+            />
+          </div>
+          <div class="input-container">
+            <input
+              placeholder="confirm password"
+              type="password"
+              name="confpassword"
+              id="confpassword"
             />
           </div>
           <div class="input-container">
