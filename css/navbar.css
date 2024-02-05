@@ -1,0 +1,192 @@
+
+/* navbar */
+
+nav.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100%;
+  min-height: 4rem;
+  background-color: #111317;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 2;
+}
+
+.site-logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #313743;
+  padding: 0.8rem 2rem;
+
+  font-size: 2rem;
+}
+
+a.site-logo-icon {
+  text-decoration: none;
+  color: var(--white);
+  transition: color 100ms ease-in;
+}
+
+a.site-logo-icon:hover {
+  color: #f04f24;
+}
+
+.option {
+  color: white;
+}
+
+.option:hover {
+  color: #f14e27;
+}
+
+.site-logo-icon > * {
+  margin: 0 0.5rem;
+}
+
+.site-logo-icon p {
+  font-size: 2.25rem;
+  font-weight: 400;
+  /* line-height: 2.6875rem;  */
+}
+
+.nav-links,
+.nav-utils {
+  margin: 0 1rem;
+}
+
+.nav-links,
+.nav-utils,
+.site-logo {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links li,
+.nav-utils li {
+  margin: 0 1rem;
+}
+
+.nav-links a,
+.nav-utils a,
+.footer-list a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.nav-links a:hover,
+.nav-utils a:hover {
+  color: #f04f24;
+}
+
+.burger {
+  display: none;
+  width: 3rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.more {
+  position: static;
+}
+
+.sections {
+  background-color: #111317;
+
+  position: absolute;
+  top: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.sections li {
+  list-style: none;
+
+  padding: 1rem 1rem;
+}
+
+.sections {
+  display: none;
+}
+
+.flex {
+  display: flex !important;
+}
+
+/* media for navbar */
+
+@media only screen and (max-width: 1015px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .burger {
+    display: block !important;
+  }
+
+  .nav-links {
+    display: none;
+    top: 0;
+  }
+
+  .site-logo-icon p {
+    font-size: 2rem;
+    font-weight: 400;
+    /* line-height: 2.2rem; */
+  }
+
+  .open .nav-links {
+    display: flex !important;
+    flex-direction: column;
+
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #111317;
+
+    position: absolute;
+    top: 4rem;
+    left: 0;
+
+    margin: 0;
+    padding: 1rem 0;
+
+    z-index: -1;
+
+    width: 100%;
+  }
+
+  .open .nav-links li {
+    margin: 1rem 1rem;
+  }
+
+  .sections {
+    display: none;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    margin: 0;
+  }
+
+  .sections li {
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+  }
+
+  @media (max-width: 440px) {
+    .nav-utils a {
+      display: none;
+    }
+  }
+}

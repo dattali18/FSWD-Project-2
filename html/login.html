@@ -1,12 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Login</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/forms.css">
+
+    <title>Sign In</title>
+  </head>
+  <body>
+    <header>
+       <nav class="nav-bar" id="nav">
+        <div class="site-logo">
+          <div
+            class="burger text-white"
+            id="burger"
+            onclick="document.getElementById('nav').classList.toggle('open')"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <a class="site-logo-icon" href="index.html">
+            <i class="fa-solid fa-gamepad"></i>
+            Games
+          </a>
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+              </a>
+            </li>
+            <li
+              class="more"
+              id="options"
+              onclick="document.getElementById('sections').classList.toggle('flex')"
+            >
+              <div class="option">
+                <i class="fa-solid fa-chevron-down"></i>
+                Options
+              </div>
+              <ul class="sections" id="sections">
+                <li>
+                  <a href="#">
+                    <i class="fa-solid fa-staff-snake"></i>
+                    Snake
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fa-solid fa-dice"></i>
+                    Game #2
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <ul class="nav-utils text-white">
+          <li>
+            <a href="login.html">
+              <i class="fa-solid fa-user"></i>
+              Sign In
+            </a>
+          </li>
+          <li>
+            <a href="sign-up.html">
+              <i class="fa-solid fa-user-plus"></i>
+              Sign Up
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="form-container">
+        <form action="">
+          <legend>Sign In</legend>
+          <div class="input-container">
+            <input
+              placeholder="username"
+              type="text"
+              name="username"
+              id="username"
+            />
+          </div>
+          <div class="input-container">
+            <input placeholder="email" type="email" name="email" id="email" />
+          </div>
+          <div class="input-container">
+            <input
+              placeholder="password"
+              type="password"
+              name="password"
+              id="password"
+            />
+          </div>
+          <div class="input-container">
+            <input
+              placeholder="confirm password"
+              type="password"
+              name="confpassword"
+              id="confpassword"
+            />
+          </div>
+          <div class="input-container">
+            <button type="submit">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script
+      src="https://kit.fontawesome.com/cd0bc30836.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
