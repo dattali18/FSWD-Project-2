@@ -1,0 +1,97 @@
+.card {
+  width: 13rem;
+  height: 18rem;
+
+  display: flex;
+  flex-direction: column;
+  /* background: #1f232c; */
+  border-radius: 0.8rem;
+
+  position: relative;
+}
+
+.pos-center {
+  position: absolute;
+
+  z-index: 1;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+
+  transition: all 200ms ease-in;
+}
+
+.play-btn {
+  font-size: 2.5rem;
+  color: var(--orange-2);
+}
+
+.card:hover .card-image {
+  filter: brightness(30%);
+}
+
+.card:hover .pos-center {
+  opacity: 1;
+  top: 40%;
+}
+
+.card-title:hover {
+  color: #f04f24;
+}
+
+.card-image {
+  height: 85%;
+
+  border-radius: 1rem;
+  margin: 1rem;
+  background-color: #181b22;
+
+  object-fit: contain;
+}
+
+.card-title {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0 0.125rem;
+
+  width: 90%;
+  text-align: center;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: hidden;
+}
+
+.card-text {
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 400;
+}
+
+.card-info > * {
+  margin: 0 0.125rem;
+}
+
+.card-bullet {
+  width: 0.1875rem;
+  height: 0.1875rem;
+}

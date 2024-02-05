@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
+    <!-- <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/forms.css" />
     <link rel="stylesheet" href="../css/alert.css" />
+    <link rel="stylesheet" href="../css/card.css" /> -->
 
     <script src="../js/alert.js" defer></script>
 
@@ -83,7 +84,64 @@
       </div>
     </header>
     <main>
-      <div class="form-container"></div>
+      <section id="trending">
+        <div class="section-head text-white">
+          <h2 class="section-header">Games</h2>
+          <div class="section-header-spacer"></div>
+        </div>
+        <div class="section-body">
+          <div class="card">
+            <div class="pos-center text-orange-dark play-btn">
+              <i
+                class="fa-solid fa-circle-play bg-white"
+                aria-hidden="true"
+              ></i>
+            </div>
+            <img
+              src="../static/images/tic-tac-toe.png"
+              alt="image"
+              class="card-image"
+            />
+
+            <div class="card-text">
+              <h3 class="card-title">Tic Tac Toe</h3>
+              <div class="card-info">
+                <p class="card-rating">9.5</p>
+                <i
+                  class="fa-solid fa-star"
+                  style="font-size: 0.5rem; color: #f04f24"
+                  aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="pos-center text-orange-dark play-btn">
+              <i
+                class="fa-solid fa-circle-play bg-white"
+                aria-hidden="true"
+              ></i>
+            </div>
+            <img
+              src="../static/images/dino.png"
+              alt="image"
+              class="card-image"
+            />
+
+            <div class="card-text">
+              <h3 class="card-title">Hopping Dion</h3>
+              <div class="card-info">
+                <p class="card-rating">7.8</p>
+                <i
+                  class="fa-solid fa-star"
+                  style="font-size: 0.5rem; color: #f04f24"
+                  aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <script
       src="https://kit.fontawesome.com/cd0bc30836.js"

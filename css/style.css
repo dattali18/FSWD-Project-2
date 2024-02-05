@@ -1,3 +1,9 @@
+@import url(alert.css);
+@import url(card.css);
+@import url(forms.css);
+@import url(navbar.css);
+@import url(sections.css);
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -20,6 +26,7 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
+  --orange-2: #f04f24;
 
   --info-bg: rgba(32, 220, 249, 0.478);
   --danger-bg: rgb(251, 77, 95) 45;
