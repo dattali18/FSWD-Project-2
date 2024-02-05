@@ -20,6 +20,10 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
+
+  --info-bg: rgba(32, 220, 249, 0.478);
+  --danger-bg: rgb(251, 77, 95) 45;
+  --success-bg: #39de5f;
 }
 
 * {
@@ -37,4 +41,18 @@ html {
 
 body {
   background-color: #313743;
+}
+
+header {
+  min-width: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 2;
+}
+
+.text-white {
+  color: var(--white);
 }

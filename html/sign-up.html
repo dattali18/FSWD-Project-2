@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/forms.css" />
+    <link rel="stylesheet" href="../css/alert.css" />
 
     <script src="../js/signUp.js" defer></script>
+    <script src="../js/alert.js" defer></script>
 
     <title>Sign Up</title>
   </head>
@@ -75,6 +77,11 @@
           </li>
         </ul>
       </nav>
+      <div class="alert-banner" id="alert-banner">
+        <i class="fa-solid" id="alert-icon"></i>
+        <span id="alert-text"></span>
+        <i class="fa-solid fa-xmark alert-close" onclick="removeAlert()"></i>
+      </div>
     </header>
     <main>
       <div class="form-container">
@@ -82,18 +89,18 @@
           <legend>Sign Up</legend>
           <div class="input-container">
             <input
-              placeholder="username"
+              placeholder="Username"
               type="text"
               name="username"
               id="username"
             />
           </div>
           <div class="input-container">
-            <input placeholder="email" type="email" name="email" id="email" />
+            <input placeholder="Email" type="email" name="email" id="email" />
           </div>
           <div class="input-container">
             <input
-              placeholder="password"
+              placeholder="Password"
               type="password"
               name="password"
               id="password"
@@ -101,14 +108,14 @@
           </div>
           <div class="input-container">
             <input
-              placeholder="confirm password"
+              placeholder="Confirm Password"
               type="password"
               name="confpassword"
               id="confpassword"
             />
           </div>
           <div class="input-container">
-            <button type="submit">Sign In</button>
+            <button type="submit">Sign Up</button>
           </div>
         </form>
       </div>

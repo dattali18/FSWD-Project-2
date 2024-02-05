@@ -22,15 +22,18 @@ document.addEventListener("DOMContentLoaded", () => {
         signInUsername === storedUser.username &&
         signInPassword === storedUser.password
       ) {
-        alert("Sign-in successful!");
+        showAlert("Log in successful", "success");
         // Optionally, redirect to another page
         // window.location.href = 'index.html';
+        sleep(1000);
         window.location.href = "index.html";
       } else {
-        alert("Invalid username or password");
+        // alert("Invalid username or password");
+        showAlert("Invalid username or password", "danger");
       }
     } else {
-      alert("No user found. Please sign up.");
+      // alert("No user found. Please sign up.");
+      showAlert("No user found. Please sign up.", "info");
     }
   });
 });
