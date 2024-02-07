@@ -1,3 +1,5 @@
+// import {showAlert, removeAlert} from "./alert.js"
+
 let turn = "X";
 let winner = null;
 let board = ["", "", "", "", "", "", "", "", ""];
@@ -42,20 +44,33 @@ function handleClick(e) {
   board[id] = turn;
   e.target.innerHTML = turn;
   if (checkWin()) {
-    document.getElementById("info").innerHTML = winner + " won!";
+    removeAlert();
+    showAlert(winner + " won!", "success");
     return;
   }
 
   if (checkTie()) {
-    document.getElementById("info").innerHTML = "It's a tie!";
+    removeAlert();
+    showAlert("It's a tie!", "danger");
     return;
   }
 
   turn = turn === "X" ? "O" : "X";
-  updateInfo();
+  removeAlert();
+  showAlert("It's " + turn + "'s turn", "info");
 }
+
+function restartGame() {
+  turn = "X";
+  winner = null;
+  board = ["", "", "", "", "", "", "", "", ""];
+  document.querySelectorAll("td").forEach((td) => (td.innerHTML = ""));
+  showAlert("It's " + turn + "'s turn", "info");
+}
+
+document.getElementById("restart").addEventListener("click", restartGame);
 
 document
   .querySelectorAll("td")
   .forEach((td) => td.addEventListener("click", handleClick));
-updateInfo();
+showAlert("It's " + turn + "'s turn", "info");

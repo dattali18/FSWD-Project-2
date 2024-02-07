@@ -32,9 +32,9 @@ td:active {
   transform: scale(0.95);
 }
 
-#info {
+/* #info {
   font-size: 1.5rem;
-}
+} */
 
 .container {
   /* height: 100vh; */
@@ -47,6 +47,10 @@ td:active {
   font-size: 2rem;
   color: white;
   margin-bottom: 2rem;
+}
+
+.game-name {
+  text-align: center;
 }
 
 button#restart {
