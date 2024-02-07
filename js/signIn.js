@@ -1,4 +1,5 @@
-// File: js/signIn.js
+import { getUserByUserName, setCurrentUser } from "./users.js";
+import { showAlert,removeAlert } from "./alert.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const signInForm = document.querySelector("#sign-in");
@@ -11,28 +12,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const signInPassword = document.querySelector("#signInPassword").value;
 
     // Retrieve user from local storage
-    const storedUserString = localStorage.getItem("currentUser");
+    const user = getUserByUserName(signInUsername);
 
-    if (storedUserString) {
+    if (user != null) {
       // Parse stored user JSON string
-      const storedUser = JSON.parse(storedUserString);
 
       // Check credentials
       if (
-        signInUsername === storedUser.username &&
-        signInPassword === storedUser.password
+        signInUsername === user.name &&
+        signInPassword === user.password
       ) {
+        removeAlert();
         showAlert("Log in successful", "success");
         // Optionally, redirect to another page
-        // window.location.href = 'index.html';
-        sleep(1000);
+        setCurrentUser(user)
         window.location.href = "index.html";
       } else {
         // alert("Invalid username or password");
+        removeAlert()
         showAlert("Invalid username or password", "danger");
       }
     } else {
       // alert("No user found. Please sign up.");
+      removeAlert();
       showAlert("No user found. Please sign up.", "info");
     }
   });

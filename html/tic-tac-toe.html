@@ -5,8 +5,10 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/tic-tac-toe.css" />
 
-    <script src="../js/alert.js" defer></script>
-    <script src="../js/tic-tac-toe.js" defer></script>
+    <script type="module" src="../js/tic-tac-toe.js" defer></script>
+
+    <!-- <script type="module" src="../js/alert.js" defer></script>
+    <script type="module" src="../js/users.js" defer></script> -->
   </head>
   <body>
     <header>
@@ -74,14 +76,13 @@
       <div class="alert-banner" id="alert-banner">
         <i class="fa-solid" id="alert-icon"></i>
         <span id="alert-text"></span>
-        <i class="fa-solid fa-xmark alert-close" onclick="removeAlert()"></i>
+        <i class="fa-solid fa-xmark alert-close" id="alert-close"></i>
       </div>
     </header>
     <main>
       <div class="container">
         <h1 class="game-name">Tic Tac Toe</h1>
         <div class="game-canvas">
-          <!-- <div id="info">It's X's turn</div> -->
           <table>
             <tr>
               <td id="0"></td>

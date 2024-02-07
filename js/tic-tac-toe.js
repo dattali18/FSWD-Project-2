@@ -1,4 +1,4 @@
-// import {showAlert, removeAlert} from "./alert.js"
+import { showAlert, removeAlert } from "./alert.js";
 
 let turn = "X";
 let winner = null;

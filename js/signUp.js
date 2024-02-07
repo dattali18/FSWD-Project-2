@@ -1,4 +1,6 @@
 // File: js/signUp.js
+import { createUser } from "./users.js";
+import { showAlert, removeAlert } from "./alert.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const signUpForm = document.querySelector("#sign-up");
@@ -15,23 +17,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Validate form fields
     if (username && email && password && confPassword == password) {
       // Create user object
-      const user = {
-        username,
-        email,
-        password,
-      };
-
-      // Convert user object to JSON string
-      const userString = JSON.stringify(user);
-
-      // Store user in local storage
-      localStorage.setItem("currentUser", userString);
-
+      let success = createUser(username, email, password);
+      console.log(success);
       // Optionally, redirect to another page
       // window.location.href = 'index.html';
-      window.location.href = "sign-in.html";
+      if (success) {
+        window.location.href = "sign-in.html";
+      } else {
+        removeAlert();
+        showAlert("User name already taken", "danger");
+      }
     } else {
-      alert("Please fill in all fields");
+      removeAlert();
+      showAlert("Please fill in all fields", "danger");
     }
   });
 });

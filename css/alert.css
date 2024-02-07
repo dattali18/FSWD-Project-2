@@ -1,8 +1,8 @@
 .alert-banner {
-  font-size: 1.2rem;
+  font-size: 1rem;
 
   padding: 1rem 2rem;
-  margin: 2rem 10%;
+  margin: .6rem 10%;
 
   border-radius: 0.5rem;
 
@@ -27,7 +27,7 @@
 }
 
 .alert-close:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .alert-banner > * {

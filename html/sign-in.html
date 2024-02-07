@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="../css/forms.css" />
     <link rel="stylesheet" href="../css/alert.css" /> -->
 
-    <script src="../js/signIn.js" defer></script>
-    <script src="../js/alert.js" defer></script>
+    <script type="module" src="../js/signIn.js" defer></script>
+    <!-- <script type="module" src="../js/alert.js"></script>
+    <script type="module" src="../js/users.js"></script> -->
 
     <title>Sign In</title>
   </head>
@@ -77,10 +78,10 @@
           </li>
         </ul>
       </nav>
-      <div class="alert-banner" id="alert-banner">
+       <div class="alert-banner" id="alert-banner">
         <i class="fa-solid" id="alert-icon"></i>
         <span id="alert-text"></span>
-        <i class="fa-solid fa-xmark alert-close" onclick="removeAlert()"></i>
+        <i class="fa-solid fa-xmark alert-close" id="alert-close"></i>
       </div>
     </header>
     <main>

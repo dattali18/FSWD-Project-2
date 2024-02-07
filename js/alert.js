@@ -24,14 +24,18 @@ function showAlert(text, type) {
 }
 
 function removeAlert() {
-    alertBanner.classList.remove("alert-show");
+  alertBanner.classList.remove("alert-show");
 
-    alertBanner.classList.remove("alert-info");
-    alertBanner.classList.remove("alert-danger");
-    alertBanner.classList.remove("alert-success");
+  alertBanner.classList.remove("alert-info");
+  alertBanner.classList.remove("alert-danger");
+  alertBanner.classList.remove("alert-success");
 
-    alertIcon.classList.remove("fa-circle-info");
-    alertIcon.classList.remove("fa-triangle-exclamation");
-    alertIcon.classList.remove("fa-circle-check");
+  alertIcon.classList.remove("fa-circle-info");
+  alertIcon.classList.remove("fa-triangle-exclamation");
+  alertIcon.classList.remove("fa-circle-check");
 }
 
+const closeBtn = document.getElementById("alert-close");
+closeBtn.addEventListener("click", removeAlert);
+
+export { showAlert, removeAlert };
