@@ -251,9 +251,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        gameCanvas.addEventListener('click', function(event) {
-            if (gameState !== 'ended') return;
         
+        gameCanvas.addEventListener('click', function(event) {
+            if (gameState !== 'ended') {
+                dino.jump();
+                return;
+            }
             const rect = gameCanvas.getBoundingClientRect();
             const x = event.clientX - rect.left;
             const y = event.clientY - rect.top;
