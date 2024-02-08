@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const relpath='../static/images/';
     let highScore = parseInt(localStorage.getItem('highScore') || '0', 10); 
     highScoreDisplay.textContent = `High Score: ${highScore}`;
-    let backgroundMusic = new Audio('../static/audio/DinoGame.mp3');
-        backgroundMusic.loop = true; // Ensure the music loops
+    let backgroundMusic = [new Audio('../static/audio/DinoGame.mp3'),new Audio('../static/audio/Jump.mp3'),new Audio('../static/audio/Crash.mp3')];
+        backgroundMusic[0].loop = true; // Ensure the music loops
 
     playButton.addEventListener('click', function() {
         playButton.style.display = 'none';
         //gameCanvas.style.display = 'block'; 
-        backgroundMusic.play();
+        backgroundMusic[0].play();
         startGame();
     });
 
@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.currentImageIndex=3;
                     this.isJumping = true;
                     this.dy = -28;
+                    backgroundMusic[1].play();
                 }
             }
 
@@ -162,14 +163,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let dino = new Dinosaur(() => {});
         let cacti = [];
-        let background = new Background([relpath + 'Back1.jpg', relpath + 'Back2.jpg', relpath + 'Back3crop.jpg']);
+        let background = new Background([relpath + 'Back1.jpg', relpath + 'Back2.jpg', relpath + 'Back3.jpg']);
 
         function gameLoop() {
             if (gameState == 'ended') {
 
-                backgroundMusic.pause(); 
+                backgroundMusic[0].pause(); 
                 //backgroundMusic.currentTime = 0;
-                
+                backgroundMusic[2].play();
                 if (score > highScore) {
                     highScore = score;
                     localStorage.setItem('highScore', highScore.toString()); 
@@ -238,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
             speedcac = 15;
             cacti = [];
             gameState = 'running'; 
-            backgroundMusic.play();
+            backgroundMusic[0].play();
 
 
             requestAnimationFrame(gameLoop); 
