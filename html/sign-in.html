@@ -5,13 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="../css/style.css" />
-    <!-- <link rel="stylesheet" href="../css/navbar.css" />
-    <link rel="stylesheet" href="../css/forms.css" />
-    <link rel="stylesheet" href="../css/alert.css" /> -->
 
     <script type="module" src="../js/signIn.js" defer></script>
-    <!-- <script type="module" src="../js/alert.js"></script>
-    <script type="module" src="../js/users.js"></script> -->
+    <script type="module" src="../js/navbar.js"></script>
 
     <title>Sign In</title>
   </head>
@@ -48,9 +44,9 @@
               </div>
               <ul class="sections" id="sections">
                 <li>
-                  <a href="#">
-                    <i class="fa-solid fa-staff-snake"></i>
-                    Snake
+                  <a href="tic-tac-toe.html">
+                    <i class="fa-solid fa-chess-board"></i>
+                    Tic Tac Toe
                   </a>
                 </li>
                 <li>
@@ -65,7 +61,7 @@
         </div>
         <ul class="nav-utils text-white">
           <li>
-            <a href="sign-in.html">
+            <a id="sign-link" href="sign-in.html">
               <i class="fa-solid fa-user"></i>
               Sign In
             </a>
@@ -78,7 +74,7 @@
           </li>
         </ul>
       </nav>
-       <div class="alert-banner" id="alert-banner">
+      <div class="alert-banner" id="alert-banner">
         <i class="fa-solid" id="alert-icon"></i>
         <span id="alert-text"></span>
         <i class="fa-solid fa-xmark alert-close" id="alert-close"></i>

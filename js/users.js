@@ -44,6 +44,10 @@ function getCurrentUser() {
   return localStorage.getItem("current-user");
 }
 
+function signOutCurrentUser() {
+  localStorage.removeItem("current-user");
+}
+
 export {
   getUsers,
   getUserByUserName,
@@ -51,4 +55,5 @@ export {
   createUser,
   setCurrentUser,
   getCurrentUser,
+  signOutCurrentUser,
 };
