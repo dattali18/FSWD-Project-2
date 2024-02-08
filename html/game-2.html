@@ -1,12 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Game 2</title>
+    <title>Dinosaur Game</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/game_2.css">
+    <script type="module" src="../js/game_2.js" defer></script>
+    <script type="module" src="../js/navbar.js" defer></script>
 </head>
 <body>
-    
+    <header>
+      <nav class="nav-bar" id="nav">
+        <div class="site-logo">
+          <div
+            class="burger text-white"
+            id="burger"
+            onclick="document.getElementById('nav').classList.toggle('open')"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <a class="site-logo-icon" href="index.html">
+            <i class="fa-solid fa-gamepad"></i>
+            Games
+          </a>
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+              </a>
+            </li>
+            <li
+              class="more"
+              id="options"
+              onclick="document.getElementById('sections').classList.toggle('flex')"
+            >
+              <div class="option">
+                <i class="fa-solid fa-chevron-down"></i>
+                Options
+              </div>
+              <ul class="sections" id="sections">
+                <li>
+                  <a href="tic-tac-toe.html">
+                    <i class="fa-solid fa-chess-board"></i>
+                    Tic Tac Toe
+                  </a>
+                </li>
+                <li>
+                  <a href="game-2.html">
+                    <i class="fa-solid fa-dinosaur"></i>
+                    Dinosaur Game
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <ul class="nav-utils text-white">
+          <li>
+            <a id="sign-link" href="sign-in.html">
+              <i class="fa-solid fa-user"></i>
+              Sign In
+            </a>
+          </li>
+          <li>
+            <a href="sign-up.html">
+              <i class="fa-solid fa-user-plus"></i>
+              Sign Up
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="alert-banner" id="alert-banner">
+        <i class="fa-solid" id="alert-icon"></i>
+        <span id="alert-text"></span>
+        <i class="fa-solid fa-xmark alert-close" id="alert-close"></i>
+      </div>
+    </header>
+    <main>
+        <div class="game-container">
+            <h1 id="gameTitle">Dinosaur Game</h1>
+            <div id="highScoreContainer">
+                <h2 id="highScoreDisplay">High Score: 0</h2>
+            </div>
+            <canvas id="gameCanvas" width="1200" height="500"></canvas>
+            <button id="playButton">Play</button>
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/cd0bc30836.js" crossorigin="anonymous"></script>
 </body>
 </html>
