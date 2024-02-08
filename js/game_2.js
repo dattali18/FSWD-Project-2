@@ -5,10 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const relpath='../static/images/';
     let highScore = parseInt(localStorage.getItem('highScore') || '0', 10); 
     highScoreDisplay.textContent = `High Score: ${highScore}`;
+    let backgroundMusic = new Audio('../static/audio/DinoGame.mp3');
+        backgroundMusic.loop = true; // Ensure the music loops
 
     playButton.addEventListener('click', function() {
         playButton.style.display = 'none';
         //gameCanvas.style.display = 'block'; 
+        backgroundMusic.play();
         startGame();
     });
 
@@ -20,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let score = 0;
         let speedcac = 15;
         let gameState = 'running';
+
+        
 
         class Dinosaur {
             constructor(callback) {
@@ -161,6 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function gameLoop() {
             if (gameState == 'ended') {
+
+                backgroundMusic.pause(); 
+                //backgroundMusic.currentTime = 0;
+                
                 if (score > highScore) {
                     highScore = score;
                     localStorage.setItem('highScore', highScore.toString()); 
@@ -229,6 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
             speedcac = 15;
             cacti = [];
             gameState = 'running'; 
+            backgroundMusic.play();
 
 
             requestAnimationFrame(gameLoop); 
