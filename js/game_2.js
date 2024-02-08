@@ -6,12 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let highScore = parseInt(localStorage.getItem('highScore') || '0', 10); 
     highScoreDisplay.textContent = `High Score: ${highScore}`;
     let backgroundMusic = [new Audio('../static/audio/DinoGame.mp3'),new Audio('../static/audio/Jump.mp3'),new Audio('../static/audio/Crash.mp3')];
-        backgroundMusic[0].loop = true; // Ensure the music loops
+    backgroundMusic[0].loop = true; 
+    //let flagStart=false;
+    //startGame();
 
     playButton.addEventListener('click', function() {
         playButton.style.display = 'none';
         //gameCanvas.style.display = 'block'; 
         backgroundMusic[0].play();
+        //flagStart = true;
         startGame();
     });
 
@@ -34,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     let img = new Image();
                     img.onload = () => {
                         if (this.images.every(image => image.complete)) {
+                            this.radius = this.images[0].width / 4;
                             if (callback) callback();
                         }
                     };
@@ -44,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.y = SCREEN_HEIGHT - 200;
                 this.dy = 0;
                 this.gravity = 1.5;
-                this.radius = this.images[0].width / 4;
                 this.isJumping = false;
                 this.animationFrame = 0;
 
@@ -113,11 +116,15 @@ document.addEventListener('DOMContentLoaded', function() {
         class Cactus {
             constructor(callback) {
                 this.image = new Image();
+                this.image.onload = () => {
+                    this.radius=this.image.width/10;
+                    if (callback) callback();
+                };
                 this.image.src = relpath + 'drunk.png';
                 this.x = SCREEN_WIDTH;
                 this.y = SCREEN_HEIGHT - 200;
                 this.dx = -speedcac;
-                this.radius=this.image.width/10;
+                
             }
 
             draw() {
@@ -160,9 +167,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-
-        let dino = new Dinosaur(() => {});
+        let dinoready=false;
+        let dino = new Dinosaur(() => {
+            dinoready=true;
+        });
         let cacti = [];
+        cacti.push(new Cactus(() => {}));
         let background = new Background([relpath + 'Back1.jpg', relpath + 'Back2.jpg', relpath + 'Back3.jpg']);
 
         function gameLoop() {
@@ -210,17 +220,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             let canSpawnNewCactus = true;
-            if (cacti.length > 0) {
+            if (cacti.length > 0 ) {
                 const rightmostCactus = cacti[cacti.length - 1];
                 const distanceFromRightEdge = SCREEN_WIDTH - (rightmostCactus.x );
-                if (distanceFromRightEdge < 800) {
+                if (distanceFromRightEdge < 950) {
                     canSpawnNewCactus = false;
                 }
             }
-            if (Math.random() < 0.025 && canSpawnNewCactus) {
+            if (Math.random() < 0.03 && canSpawnNewCactus) {
                 cacti.push(new Cactus());
             }
 
+            //if (!flagStart)return;
             requestAnimationFrame(gameLoop);
         }
 
@@ -267,7 +278,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 resetGame();
             }
         });
-
         gameLoop();
     }
 });
