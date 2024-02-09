@@ -19,6 +19,7 @@ function createUser(name, email, password) {
     name: name,
     email: email,
     password: password,
+    dinoScore:0,
   };
 
   users.push(user);
