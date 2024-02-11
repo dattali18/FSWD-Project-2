@@ -1,0 +1,67 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  position: relative;
+  text-align: center;
+}
+
+#gameCanvas {
+  border: 5px solid var(--black);
+  border-radius: 1rem;
+}
+
+#highScoreContainer {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  color: white; /* Sets the color of the content within #highScoreContainer to white */
+}
+
+#playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--orange-2);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 2rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+
+  border-radius: 0.5rem;
+}
+
+#playButton:hover {
+  background-color: #c1401c;
+}
+
+#gameTitle {
+  margin-bottom: 2.5rem;
+  color: white; /* Sets the color of the game title to white */
+}
+
+.game-instructions {
+margin-top: 1rem;
+
+  color: var(--white);
+
+  font-size: 1.4rem;
+}
+
+.key {
+  background-color: var(--secondary);
+
+  padding: 0.1rem 0.5rem;
+
+  border-radius: .2rem;
+
+  font-size: 1rem;
+}

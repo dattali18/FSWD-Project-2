@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Dinosaur Game</title>
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/game_2.css">
-    <script type="module" src="../js/game_2.js" defer></script>
+    <link rel="stylesheet" href="../css/hopping-dino.css" />
+
+    <script type="module" src="../js/hopping_dino.js" defer></script>
     <script type="module" src="../js/navbar.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
       <nav class="nav-bar" id="nav">
         <div class="site-logo">
@@ -29,6 +30,12 @@
                 Home
               </a>
             </li>
+            <li>
+              <a href="score-board.html">
+                <i class="fa-solid fa-table"></i>
+                Score Board
+              </a>
+            </li>
             <li
               class="more"
               id="options"
@@ -46,9 +53,9 @@
                   </a>
                 </li>
                 <li>
-                  <a href="game-2.html">
-                    <i class="fa-solid fa-dinosaur"></i>
-                    Dino Game
+                  <a href="hopping-dino.html">
+                    <i class="fa-solid fa-car-side"></i>
+                    Hopping Dino
                   </a>
                 </li>
               </ul>
@@ -77,15 +84,21 @@
       </div>
     </header>
     <main>
-        <div class="game-container">
-            <h1 id="gameTitle">Dinosaur Game</h1>
-            <div id="highScoreContainer">
-                <h2 id="highScoreDisplay">High Score: 0</h2>
-            </div>
-            <canvas id="gameCanvas" width="1200" height="500"></canvas>
-            <button id="playButton">Play</button>
+      <div class="game-container">
+        <h1 id="gameTitle">Dinosaur Game</h1>
+        <div id="highScoreContainer">
+          <h2 id="highScoreDisplay">High Score: 0</h2>
         </div>
+        <canvas id="gameCanvas" width="1200" height="500"></canvas>
+        <button id="playButton">Play</button>
+      </div>
+      <div class="game-instructions">
+        Press <span class="key">space</span> to jump.
+      </div>
     </main>
-    <script src="https://kit.fontawesome.com/cd0bc30836.js" crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://kit.fontawesome.com/cd0bc30836.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

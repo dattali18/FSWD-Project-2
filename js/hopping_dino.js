@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function drawReplayButton() {
-            ctx.fillStyle = '#000';
+            ctx.fillStyle = "#f04f24";
             ctx.fillRect(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 25, 100, 50);
             ctx.fillStyle = '#FFF';
             ctx.font = '20px Arial';

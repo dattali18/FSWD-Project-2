@@ -2,13 +2,16 @@ import { showAlert, removeAlert } from "./alert.js";
 import { getCurrentUser, setCurrentUser } from "./users.js";
 
 const playGame1Btn = document.getElementById("play-game-1");
-const playGame2Btn = document.getElementById("play-game-2");
+const playGame2Btn = document.getElementById("play-hopping-dino");
 
 playGame1Btn.addEventListener("click", checkUserIsSignedIn("tic-tac-toe.html"));
-playGame2Btn.addEventListener("click", checkUserIsSignedIn("game-2.html"));
+playGame2Btn.addEventListener(
+  "click",
+  checkUserIsSignedIn("hopping-dino.html")
+);
 
 function checkUserIsSignedIn(gameUrl) {
-  return function() {
+  return function () {
     const currentUser = getCurrentUser();
     if (currentUser == null) {
       removeAlert();
@@ -18,4 +21,3 @@ function checkUserIsSignedIn(gameUrl) {
     }
   };
 }
-
