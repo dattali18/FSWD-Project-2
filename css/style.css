@@ -3,6 +3,7 @@
 @import url(forms.css);
 @import url(navbar.css);
 @import url(sections.css);
+@import url(score-baord.css);
 
 :root {
   --blue: #007bff;

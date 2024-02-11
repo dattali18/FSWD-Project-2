@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <script type="module" src="../js/score-board.js"></script>
+    <script type="module" src="../js/navbar.js"></script>
+
+    <title>Score Board</title>
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar" id="nav">
+        <div class="site-logo">
+          <div
+            class="burger text-white"
+            id="burger"
+            onclick="document.getElementById('nav').classList.toggle('open')"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <a class="site-logo-icon" href="index.html">
+            <i class="fa-solid fa-gamepad"></i>
+            Games
+          </a>
+          <ul class="nav-links">
+            <li>
+              <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+              </a>
+            </li>
+            <li
+              class="more"
+              id="options"
+              onclick="document.getElementById('sections').classList.toggle('flex')"
+            >
+              <div class="option">
+                <i class="fa-solid fa-chevron-down"></i>
+                Options
+              </div>
+              <ul class="sections" id="sections">
+                <li>
+                  <a href="tic-tac-toe.html">
+                    <i class="fa-solid fa-chess-board"></i>
+                    Tic Tac Toe
+                  </a>
+                </li>
+                <li>
+                  <a href="game-2.html">
+                    <i class="fa-solid fa-dice"></i>
+                    Dino Game
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <ul class="nav-utils text-white">
+          <li>
+            <a id="sign-link" href="sign-in.html">
+              <i class="fa-solid fa-user"></i>
+              Sign In
+            </a>
+          </li>
+          <li>
+            <a href="sign-up.html">
+              <i class="fa-solid fa-user-plus"></i>
+              Sign Up
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="alert-banner" id="alert-banner">
+        <i class="fa-solid" id="alert-icon"></i>
+        <span id="alert-text"></span>
+        <i class="fa-solid fa-xmark alert-close" id="alert-close"></i>
+      </div>
+    </header>
+    <main>
+      <section class="score-broad">
+        <h1 class="score-broad-header">High Score</h1>
+        <div class="table-section" style="overflow-x: auto">
+          <table class="hight-score-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>User name</th>
+                <th>Game</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="score-broad-body">
+              <!-- <tr>
+                <td rowspan="3"><div>Zack Snyder</div></td>
+                <td rowspan="3"><div>Zack Snyder</div></td>
+                <td><div>Zack Snyder</div></td>
+              </tr>
+              <tr>
+                <td><div>Deborah Snyder Wesley Coller</div></td>
+              </tr>
+              <tr>
+                <td><div>Wesley Coller</div></td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://kit.fontawesome.com/cd0bc30836.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

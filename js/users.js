@@ -5,7 +5,7 @@ function getUserById(id) {
 
 function getUserByUserName(username) {
   const users = getUsers();
-  return users.filter((user) => (user.name == username))[0];
+  return users.filter((user) => user.name == username)[0];
 }
 
 function createUser(name, email, password) {
@@ -19,7 +19,7 @@ function createUser(name, email, password) {
     name: name,
     email: email,
     password: password,
-    dinoScore:0,
+    score: 0,
   };
 
   users.push(user);
