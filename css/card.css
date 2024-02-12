@@ -10,7 +10,10 @@
   position: relative;
 }
 
-.pos-center {
+.in-progress{
+  color: #fff;
+}
+.pos-center{
   position: absolute;
 
   z-index: 1;
@@ -38,7 +41,7 @@
   filter: brightness(30%);
 }
 
-.card:hover .pos-center {
+.card:hover .pos-center{
   opacity: 1;
   top: 40%;
 }
@@ -46,6 +49,7 @@
 .card-title:hover {
   color: #f04f24;
 }
+
 
 .card-image {
   height: 85%;

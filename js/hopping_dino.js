@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let highScore = currentUser.dinoScore; // Assuming dinoScore is where you store the high score
     highScoreDisplay.textContent = `High Score: ${highScore}`;
 
+    //60 FPS
+    let previousTimestamp = 0;
+    const frameInterval = 1000 / 60;
+
     let backgroundMusic = [new Audio('../static/audio/DinoGame.mp3'), new Audio('../static/audio/Jump.mp3'), new Audio('../static/audio/Crash.mp3')];
     backgroundMusic[0].loop = true;
     //let flagStart=false;
@@ -33,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let gameState = 'running';
 
 
-
+        // #region Dino
         class Dinosaur {
             constructor(callback) {
                 this.imagePaths = [relpath + 'run3.png', relpath + 'run2.png', relpath + 'run1.png', relpath + 'jump.png'];
@@ -117,7 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 return false;
             }
         }
+        // #endregion
 
+        // #region Cactus
         class Cactus {
             constructor(callback) {
                 this.image = new Image();
@@ -144,7 +150,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 return this.x + 150 < 0;
             }
         }
+        // #endregion
 
+        // #region Background 
         class Background {
             constructor(imagePaths) {
                 this.images = imagePaths.map(path => {
@@ -172,6 +180,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         }
+
+        //#endregion
+
+        //Objects initialization
         let dinoready = false;
         let dino = new Dinosaur(() => {
             dinoready = true;
@@ -179,73 +191,84 @@ document.addEventListener('DOMContentLoaded', function () {
         let cacti = [];
         cacti.push(new Cactus(() => { }));
         let background = new Background([relpath + 'Back1.jpg', relpath + 'Back2.jpg', relpath + 'Back3.jpg']);
+        
+        //#region  Game Loop
+        function gameLoop(timestamp) {
 
-        function gameLoop() {
-            if (gameState == 'ended') {
+            const elapsedTime = timestamp - previousTimestamp;
+            if (elapsedTime > frameInterval) { //60 fps security
+                previousTimestamp = timestamp - (elapsedTime % frameInterval);
+                if (gameState == 'ended') {
 
-                backgroundMusic[0].pause();
-                //backgroundMusic.currentTime = 0;
-                backgroundMusic[2].play();
-                if (score > highScore) {
-                    highScore = score;
-                    currentUser.dinoScore = highScore; // Update the high score in the currentUser object
-                    localStorage.setItem('current-user', JSON.stringify(currentUser)); // Save the updated currentUser object
+                    backgroundMusic[0].pause();
+                    //backgroundMusic.currentTime = 0;
+                    backgroundMusic[2].play();
+                    if (score > highScore) {
+                        highScore = score;
+                        currentUser.dinoScore = highScore; 
+                        localStorage.setItem('current-user', JSON.stringify(currentUser));
 
-                    let userIndex = users.findIndex(user => user.id === currentUser.id);
-                    if (userIndex !== -1) {
-                        users[userIndex].dinoScore = score; // Update the high score
-                        localStorage.setItem('users', JSON.stringify(users)); // Save the updated users array
+                        let userIndex = users.findIndex(user => user.id === currentUser.id);
+                        if (userIndex !== -1) {
+                            users[userIndex].dinoScore = score;
+                            localStorage.setItem('users', JSON.stringify(users));
+                        }
+                        highScoreDisplay.textContent = `High Score: ${highScore}`;
                     }
-                    highScoreDisplay.textContent = `High Score: ${highScore}`;
+                    drawReplayButton();
+                    return;
                 }
-                drawReplayButton();
-                return;
-            }
-            ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            background.update();
-            background.draw();
-            dino.update();
-            dino.draw();
 
-            if (dino.checkCollision_round(cacti)) { //_square
-                console.log('Collision detected!');
-                gameState = 'ended';
-                drawReplayButton();
-            }
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                background.update();
+                background.draw();
+                dino.update();
+                dino.draw();
 
-            score++;
-            ctx.font = '30px Arial';
-            ctx.fillStyle = 'black';
-            ctx.fillText(`Score: ${score}`, 10, 50);
-
-            cacti.forEach((cactus, index) => {
-                cactus.update();
-                cactus.draw();
-                if (cactus.isOffScreen()) {
-                    cactus.markedForRemoval = true;
+                if (dino.checkCollision_round(cacti)) { //_square
+                    console.log('Collision detected!');
+                    gameState = 'ended';
+                    drawReplayButton();
                 }
-            });
 
-            cacti = cacti.filter(cactus => !cactus.markedForRemoval);
-            if (speedcac < 35) {
-                speedcac = 15 + score / 200;
-            }
+                score++;
+                ctx.font = '30px Arial';
+                ctx.fillStyle = 'black';
+                ctx.fillText(`Score: ${score}`, 10, 50);
 
-            let canSpawnNewCactus = true;
-            if (cacti.length > 0) {
-                const rightmostCactus = cacti[cacti.length - 1];
-                const distanceFromRightEdge = SCREEN_WIDTH - (rightmostCactus.x);
-                if (distanceFromRightEdge < 950) {
-                    canSpawnNewCactus = false;
+                cacti.forEach((cactus, index) => {
+                    cactus.update();
+                    cactus.draw();
+                    if (cactus.isOffScreen()) {
+                        cactus.markedForRemoval = true;
+                    }
+                });
+
+                cacti = cacti.filter(cactus => !cactus.markedForRemoval);
+                if (speedcac < 32) {
+                    speedcac = 15 + score / 200;
                 }
-            }
-            if (Math.random() < 0.03 && canSpawnNewCactus) {
-                cacti.push(new Cactus());
-            }
 
-            //if (!flagStart)return;
-            requestAnimationFrame(gameLoop);
+                let canSpawnNewCactus = true;
+                if (cacti.length > 0) {
+                    const rightmostCactus = cacti[cacti.length - 1];
+                    const distanceFromRightEdge = SCREEN_WIDTH - (rightmostCactus.x);
+                    if (distanceFromRightEdge < 950) {
+                        canSpawnNewCactus = false;
+                    }
+                }
+                if (Math.random() < 0.03 && canSpawnNewCactus) {
+                    cacti.push(new Cactus());
+                }
+
+                requestAnimationFrame(gameLoop);
+            } else {
+                requestAnimationFrame(gameLoop);
+            }
         }
+        //#endregion
+
+        //#region Buttons/Keys
 
         function drawReplayButton() {
             ctx.fillStyle = "#f04f24";
@@ -290,6 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 resetGame();
             }
         });
-        gameLoop();
+        //#endregion
+        requestAnimationFrame(gameLoop());
     }
 });
