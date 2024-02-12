@@ -46,3 +46,8 @@
   /* padding: 0 10%; */
   margin: 2rem 0;
 }
+
+
+.gold { color: gold; }
+.silver { color: silver; }
+.bronze { color: #cd7f32; }

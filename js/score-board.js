@@ -27,11 +27,20 @@ function createRow(id, username, game, score) {
 }
 
 function getUsersTable() {
-  const users = getUsers().sort((a, b) => a.score > b.score);
+  const users = getUsers().sort((a, b) => b.score - a.score);
 
   let id = 1;
   users.forEach((user) => {
     const row = createRow(id, user.name, "Hopping Dino", user.score);
+
+    if (id === 1) {
+      row.classList.add("gold");
+    } else if (id === 2) {
+      row.classList.add("silver");
+    } else if (id === 3) {
+      row.classList.add("bronze");
+    }
+
     tableBody.appendChild(row);
     id += 1;
   });

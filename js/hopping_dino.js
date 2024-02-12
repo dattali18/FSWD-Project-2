@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const highScoreDisplay = document.getElementById('highScoreDisplay');
     let currentUser = JSON.parse(localStorage.getItem('current-user'));
     let users = JSON.parse(localStorage.getItem('users'));
-    let highScore = currentUser.dinoScore; // Assuming dinoScore is where you store the high score
+    let highScore = currentUser.score; 
     highScoreDisplay.textContent = `High Score: ${highScore}`;
 
     //60 FPS
@@ -205,12 +205,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     backgroundMusic[2].play();
                     if (score > highScore) {
                         highScore = score;
-                        currentUser.dinoScore = highScore; 
+                        currentUser.score = highScore; 
                         localStorage.setItem('current-user', JSON.stringify(currentUser));
 
                         let userIndex = users.findIndex(user => user.id === currentUser.id);
                         if (userIndex !== -1) {
-                            users[userIndex].dinoScore = score;
+                            users[userIndex].score = score;
                             localStorage.setItem('users', JSON.stringify(users));
                         }
                         highScoreDisplay.textContent = `High Score: ${highScore}`;
