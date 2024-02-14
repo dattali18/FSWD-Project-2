@@ -16,6 +16,11 @@ html {
   border: 5px solid ;
   border-color: black;
   border-radius: 1rem;
+  width: 100%;
+  height: auto;
+  max-width: 1200px; /* Max width */
+  display: block; /* Prevent inline spacing */
+  margin: 0 auto; /* Centering if needed */
 }
 
 #highScoreContainer {
@@ -24,8 +29,11 @@ html {
   left: 0.6rem;
   color: white;
 }
+#replayButton {
+  display: none;
+}
 
-#playButton {
+#playButton,#replayButton {
   position: absolute;
   top: 50%;
   left: 50%;

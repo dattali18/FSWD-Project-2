@@ -17,48 +17,69 @@ document.addEventListener('DOMContentLoaded', function () {
         new Audio('../static/audio/Jump.mp3'),
         new Audio('../static/audio/Crash.mp3')];
     backgroundMusic[0].loop = true;
+    const BASE_WIDTH = 1200;
+    const BASE_HEIGHT = 500;
+    let scale = 1; // for size of the page changeable
+    let gameStarted = false;
+
+    function resizeCanvas() { // resize page
+        const screenWidth = window.innerWidth;
+        scale = screenWidth / BASE_WIDTH;
+        gameCanvas.width = BASE_WIDTH * scale;
+        gameCanvas.height = BASE_HEIGHT * scale;
+        if (gameStarted) {
+            console.log("Game has started, resizing will trigger reload.");
+            window.location.reload(); // reloads the page
+        }
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas(); // Set initial size
 
     playButton.addEventListener('click', function () {
         playButton.style.display = 'none';
-        //gameCanvas.style.display = 'block'; 
         backgroundMusic[0].play();
+        gameStarted = true;
         startGame();
     });
 
     function startGame() {
         const ctx = gameCanvas.getContext('2d');
-        const SCREEN_WIDTH = 1200;
-        const SCREEN_HEIGHT = 500;
+        const SCREEN_WIDTH = gameCanvas.width;
+        const SCREEN_HEIGHT = gameCanvas.height;
         // 60 FPS
         let previousTimestamp = 0;
         const frameInterval = 1000 / 60;
 
-        const speedBackground = 3;
+        const speedBackground = 3*scale;
         let score = 0;
-        let speedcac = 15;
+        let speedcac = 15*scale;
         let gameState = 'running';
 
 
         // #region Dino
         class Dinosaur {
             constructor(callback) {
-                this.imagePaths = [relpath + 'run3.png', relpath + 'run2.png', relpath + 'run1.png', relpath + 'jump.png'];
+                this.imagePaths = [
+                    relpath + 'run3.png',
+                    relpath + 'run2.png',
+                    relpath + 'run1.png',
+                    relpath + 'jump.png'];
                 this.currentImageIndex = 0;
                 this.images = this.imagePaths.map(path => {
                     let img = new Image();
                     img.onload = () => {
                         if (this.images.every(image => image.complete)) {
-                            this.radius = this.images[0].width / 4;
+                            this.radius = this.images[0].width* scale / 4;
                             if (callback) callback();
                         }
                     };
                     img.src = path;
                     return img;
                 });
-                this.x = 10;
-                this.y = SCREEN_HEIGHT - 200;
+                this.x = 10 * scale;
+                this.y = SCREEN_HEIGHT - 200* scale;
                 this.dy = 0;
-                this.gravity = 1.5;
+                this.gravity = 1.5* scale;
                 this.isJumping = false;
                 this.animationFrame = 0;
 
@@ -66,15 +87,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
             draw() {
                 const currentImage = this.images[this.currentImageIndex];
-                ctx.drawImage(currentImage, this.x, this.y, currentImage.width / 2, currentImage.height / 2);
+                ctx.drawImage(currentImage, this.x, this.y, currentImage.width* scale / 2, currentImage.height* scale / 2);
             }
 
             update() {
                 this.dy += this.gravity;
                 this.y += this.dy;
 
-                if (this.y > SCREEN_HEIGHT - 200) {
-                    this.y = SCREEN_HEIGHT - 200;
+                if (this.y > SCREEN_HEIGHT - 200* scale) {
+                    this.y = SCREEN_HEIGHT - 200* scale;
                     this.dy = 0;
                     this.isJumping = false;
                     if (this.currentImageIndex == 3) {
@@ -92,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!this.isJumping) {
                     this.currentImageIndex = 3;
                     this.isJumping = true;
-                    this.dy = -28;
+                    this.dy = -28* scale;
                     backgroundMusic[1].play();
                 }
             }
@@ -100,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
             checkCollision_square(cacti) {
                 for (let cactus of cacti) {
                     console.log(cactus.x + cactus.image.width / 5)
-                    if (this.x < cactus.x + cactus.image.width / 5 && this.x + this.images[0].width / 2 > cactus.x) {
-                        if (this.y < cactus.y + cactus.image.height / 4 && this.y + this.images[0].height / 2 > cactus.y) {
+                    if (this.x < cactus.x + cactus.image.width* scale / 5 && this.x + this.images[0].width* scale / 2 > cactus.x) {
+                        if (this.y < cactus.y + cactus.image.height* scale / 4 && this.y + this.images[0].height* scale / 2 > cactus.y) {
                             return true;
                         }
                     }
@@ -110,8 +131,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             checkCollision_round(cacti) {
                 for (let cactus of cacti) {
-                    let cx = (this.x + this.images[0].width / 4) - (cactus.x + cactus.image.width / 10);
-                    let cy = (this.y + this.images[0].height / 4) - (cactus.y + cactus.image.height / 8);
+                    let cx = (this.x + this.images[0].width* scale / 4) - (cactus.x + cactus.image.width* scale / 10);
+                    let cy = (this.y + this.images[0].height* scale / 4) - (cactus.y + cactus.image.height* scale / 8);
                     let distance = Math.sqrt(cx * cx + cy * cy);
 
                     let sumOfRadii = this.radius + cactus.radius;
@@ -130,18 +151,18 @@ document.addEventListener('DOMContentLoaded', function () {
             constructor(callback) {
                 this.image = new Image();
                 this.image.onload = () => {
-                    this.radius = this.image.width / 10;
+                    this.radius = this.image.width* scale / 10;
                     if (callback) callback();
                 };
                 this.image.src = relpath + 'drunk.png';
                 this.x = SCREEN_WIDTH;
-                this.y = SCREEN_HEIGHT - 200;
+                this.y = SCREEN_HEIGHT - 200* scale;
                 this.dx = -speedcac;
 
             }
 
             draw() {
-                ctx.drawImage(this.image, this.x, this.y, this.image.width / 5, this.image.height / 4);
+                ctx.drawImage(this.image, this.x, this.y, this.image.width* scale / 5, this.image.height* scale / 4);
             }
 
             update() {
@@ -149,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             isOffScreen() {
-                return this.x + 150 < 0;
+                return this.x + 150* scale < 0;
             }
         }
         // #endregion
@@ -217,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         highScoreDisplay.textContent = `High Score: ${highScore}`;
                     }
-                    drawReplayButton();
+                    document.getElementById('replayButton').style.display = 'block';
                     return;
                 }
 
@@ -230,7 +251,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (dino.checkCollision_round(cacti)) { //_square
                     console.log('Collision detected!');
                     gameState = 'ended';
-                    drawReplayButton();
                 }
 
                 score++;
@@ -248,14 +268,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 cacti = cacti.filter(cactus => !cactus.markedForRemoval);
                 if (speedcac < 32) {
-                    speedcac = 15 + score / 200;
+                    speedcac = 15 + score / 200* scale;
                 }
 
                 let canSpawnNewCactus = true;
                 if (cacti.length > 0) {
                     const rightmostCactus = cacti[cacti.length - 1];
                     const distanceFromRightEdge = SCREEN_WIDTH - (rightmostCactus.x);
-                    if (distanceFromRightEdge < 950) {
+                    if (distanceFromRightEdge < 950* scale) {
                         canSpawnNewCactus = false;
                     }
                 }
@@ -272,13 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //#region Buttons/Keys
 
-        function drawReplayButton() {
-            ctx.fillStyle = "#f04f24";
-            ctx.fillRect(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 25, 100, 50);
-            ctx.fillStyle = '#FFF';
-            ctx.font = '20px Arial';
-            ctx.fillText('Replay', SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT / 2 + 10);
-        }
+        
 
         function resetGame() {
             ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -305,16 +319,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 dino.jump();
                 return;
             }
-            const rect = gameCanvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-
-            if (x >= SCREEN_WIDTH / 2 - 50 && x <= SCREEN_WIDTH / 2 + 50 &&
-                y >= SCREEN_HEIGHT / 2 - 25 && y <= SCREEN_HEIGHT / 2 + 25) {
-                resetGame();
-            }
         });
+        document.getElementById('replayButton').addEventListener('click', function() {
+            resetGame(); // Your game's reset function
+            this.style.display = 'none'; // Hide the button again
+          });
+        
         //#endregion
         requestAnimationFrame(gameLoop);
     }
