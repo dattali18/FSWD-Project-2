@@ -3,13 +3,11 @@ import { getUsers } from "./users.js";
 const tableBody = document.getElementById("score-broad-body");
 
 function createRow(id, username, game, score) {
-  // Create a table row element
   var row = document.createElement("tr");
 
   var numberCell = document.createElement("th");
   numberCell.textContent = id;
   row.appendChild(numberCell);
-  // Create and append table data elements for username, game, and score
   var usernameCell = document.createElement("td");
   usernameCell.textContent = username;
   row.appendChild(usernameCell);
@@ -22,7 +20,6 @@ function createRow(id, username, game, score) {
   scoreCell.textContent = score;
   row.appendChild(scoreCell);
 
-  // Return the created row
   return row;
 }
 
@@ -33,7 +30,7 @@ function getUsersTable() {
   users.forEach((user) => {
     const row = createRow(id, user.name, "Hopping Dino", user.score);
 
-    if (id === 1) {
+    if (id === 1) {   //displays the top 3 in gold silver and bronze
       row.classList.add("gold");
     } else if (id === 2) {
       row.classList.add("silver");

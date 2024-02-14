@@ -293,8 +293,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //#region Buttons/Keys
 
-
-
         function resetGame() {
             ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
