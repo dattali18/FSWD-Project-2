@@ -2,28 +2,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const playButton = document.getElementById('playButton');
     const gameCanvas = document.getElementById('gameCanvas');
 
-    const relpath = '../static/images/';
-
+    const relpath = '../static/images/'; // relative path to the images
+    // Get Highscore var from html
     const highScoreDisplay = document.getElementById('highScoreDisplay');
     let currentUser = JSON.parse(localStorage.getItem('current-user'));
     let users = JSON.parse(localStorage.getItem('users'));
     let highScore = currentUser.score; 
     highScoreDisplay.textContent = `High Score: ${highScore}`;
 
-    //60 FPS
-    let previousTimestamp = 0;
-    const frameInterval = 1000 / 60;
 
-    let backgroundMusic = [new Audio('../static/audio/DinoGame.mp3'), new Audio('../static/audio/Jump.mp3'), new Audio('../static/audio/Crash.mp3')];
+    // Game sounds
+    let backgroundMusic = [
+        new Audio('../static/audio/DinoGame.mp3'),
+        new Audio('../static/audio/Jump.mp3'),
+        new Audio('../static/audio/Crash.mp3')];
     backgroundMusic[0].loop = true;
-    //let flagStart=false;
-    //startGame();
 
     playButton.addEventListener('click', function () {
         playButton.style.display = 'none';
         //gameCanvas.style.display = 'block'; 
         backgroundMusic[0].play();
-        //flagStart = true;
         startGame();
     });
 
@@ -31,6 +29,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const ctx = gameCanvas.getContext('2d');
         const SCREEN_WIDTH = 1200;
         const SCREEN_HEIGHT = 500;
+        // 60 FPS
+        let previousTimestamp = 0;
+        const frameInterval = 1000 / 60;
+
         const speedBackground = 3;
         let score = 0;
         let speedcac = 15;
@@ -314,6 +316,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         //#endregion
-        requestAnimationFrame(gameLoop());
+        requestAnimationFrame(gameLoop);
     }
 });
