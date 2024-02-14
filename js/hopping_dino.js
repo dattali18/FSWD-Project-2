@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const highScoreDisplay = document.getElementById('highScoreDisplay');
     let currentUser = JSON.parse(localStorage.getItem('current-user'));
     let users = JSON.parse(localStorage.getItem('users'));
-    let highScore = currentUser.score; 
+    let highScore = currentUser.score;
     highScoreDisplay.textContent = `High Score: ${highScore}`;
 
 
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let scale = 1; // for size of the page changeable
     let gameStarted = false;
 
-    function resizeCanvas() { // resize page
+    function resizeCanvas() { // when page is resized
         const screenWidth = window.innerWidth;
         scale = screenWidth / BASE_WIDTH;
         gameCanvas.width = BASE_WIDTH * scale;
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     window.addEventListener('resize', resizeCanvas);
-    resizeCanvas(); // Set initial size
+    resizeCanvas();
 
     playButton.addEventListener('click', function () {
         playButton.style.display = 'none';
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let previousTimestamp = 0;
         const frameInterval = 1000 / 60;
 
-        const speedBackground = 3*scale;
+        const speedBackground = 3 * scale;
         let score = 0;
-        let speedcac = 15*scale;
+        let speedcac = 16 * scale;
         let gameState = 'running';
 
 
@@ -64,22 +64,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     relpath + 'run2.png',
                     relpath + 'run1.png',
                     relpath + 'jump.png'];
-                this.currentImageIndex = 0;
+
                 this.images = this.imagePaths.map(path => {
                     let img = new Image();
                     img.onload = () => {
                         if (this.images.every(image => image.complete)) {
-                            this.radius = this.images[0].width* scale / 4;
+                            this.radius = this.images[0].width * scale / 4;
                             if (callback) callback();
                         }
                     };
                     img.src = path;
                     return img;
                 });
+                this.currentImageIndex = 0;
                 this.x = 10 * scale;
-                this.y = SCREEN_HEIGHT - 200* scale;
+                this.y = SCREEN_HEIGHT - 200 * scale;
                 this.dy = 0;
-                this.gravity = 1.5* scale;
+                this.gravity = 1.5 * scale;
                 this.isJumping = false;
                 this.animationFrame = 0;
 
@@ -87,15 +88,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
             draw() {
                 const currentImage = this.images[this.currentImageIndex];
-                ctx.drawImage(currentImage, this.x, this.y, currentImage.width* scale / 2, currentImage.height* scale / 2);
+                ctx.drawImage(currentImage, this.x, this.y, currentImage.width * scale / 2, currentImage.height * scale / 2);
             }
 
             update() {
                 this.dy += this.gravity;
                 this.y += this.dy;
 
-                if (this.y > SCREEN_HEIGHT - 200* scale) {
-                    this.y = SCREEN_HEIGHT - 200* scale;
+                if (this.y > SCREEN_HEIGHT - 200 * scale) {
+                    this.y = SCREEN_HEIGHT - 200 * scale;
                     this.dy = 0;
                     this.isJumping = false;
                     if (this.currentImageIndex == 3) {
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!this.isJumping) {
                     this.currentImageIndex = 3;
                     this.isJumping = true;
-                    this.dy = -28* scale;
+                    this.dy = -28 * scale;
                     backgroundMusic[1].play();
                 }
             }
@@ -121,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
             checkCollision_square(cacti) {
                 for (let cactus of cacti) {
                     console.log(cactus.x + cactus.image.width / 5)
-                    if (this.x < cactus.x + cactus.image.width* scale / 5 && this.x + this.images[0].width* scale / 2 > cactus.x) {
-                        if (this.y < cactus.y + cactus.image.height* scale / 4 && this.y + this.images[0].height* scale / 2 > cactus.y) {
+                    if (this.x < cactus.x + cactus.image.width * scale / 5 && this.x + this.images[0].width * scale / 2 > cactus.x) {
+                        if (this.y < cactus.y + cactus.image.height * scale / 4 && this.y + this.images[0].height * scale / 2 > cactus.y) {
                             return true;
                         }
                     }
@@ -131,8 +132,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             checkCollision_round(cacti) {
                 for (let cactus of cacti) {
-                    let cx = (this.x + this.images[0].width* scale / 4) - (cactus.x + cactus.image.width* scale / 10);
-                    let cy = (this.y + this.images[0].height* scale / 4) - (cactus.y + cactus.image.height* scale / 8);
+                    let cx = (this.x + this.images[0].width * scale / 4) - (cactus.x + cactus.image.width * scale / 10);
+                    let cy = (this.y + this.images[0].height * scale / 4) - (cactus.y + cactus.image.height * scale / 8);
                     let distance = Math.sqrt(cx * cx + cy * cy);
 
                     let sumOfRadii = this.radius + cactus.radius;
@@ -151,18 +152,18 @@ document.addEventListener('DOMContentLoaded', function () {
             constructor(callback) {
                 this.image = new Image();
                 this.image.onload = () => {
-                    this.radius = this.image.width* scale / 10;
+                    this.radius = this.image.width * scale / 10;
                     if (callback) callback();
                 };
                 this.image.src = relpath + 'drunk.png';
                 this.x = SCREEN_WIDTH;
-                this.y = SCREEN_HEIGHT - 200* scale;
+                this.y = SCREEN_HEIGHT - 200 * scale;
                 this.dx = -speedcac;
 
             }
 
             draw() {
-                ctx.drawImage(this.image, this.x, this.y, this.image.width* scale / 5, this.image.height* scale / 4);
+                ctx.drawImage(this.image, this.x, this.y, this.image.width * scale / 5, this.image.height * scale / 4);
             }
 
             update() {
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             isOffScreen() {
-                return this.x + 150* scale < 0;
+                return this.x + 150 * scale < 0;
             }
         }
         // #endregion
@@ -214,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let cacti = [];
         cacti.push(new Cactus(() => { }));
         let background = new Background([relpath + 'Back1.jpg', relpath + 'Back2.jpg', relpath + 'Back3.jpg']);
-        
+
         //#region  Game Loop
         function gameLoop(timestamp) {
 
@@ -228,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     backgroundMusic[2].play();
                     if (score > highScore) {
                         highScore = score;
-                        currentUser.score = highScore; 
+                        currentUser.score = highScore;
                         localStorage.setItem('current-user', JSON.stringify(currentUser));
 
                         let userIndex = users.findIndex(user => user.id === currentUser.id);
@@ -242,8 +243,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                background.update();
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); // empty the canvas to redraw
+                background.update(); //update postion
                 background.draw();
                 dino.update();
                 dino.draw();
@@ -254,9 +255,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 score++;
-                ctx.font = '30px Arial';
+                ctx.font = 30*scale +'px Arial'; //scale Score font
                 ctx.fillStyle = 'black';
-                ctx.fillText(`Score: ${score}`, 10, 50);
+                ctx.fillText(`Score: ${score}`, 10*scale, 50*scale);
 
                 cacti.forEach((cactus, index) => {
                     cactus.update();
@@ -266,16 +267,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
-                cacti = cacti.filter(cactus => !cactus.markedForRemoval);
+                cacti = cacti.filter(cactus => !cactus.markedForRemoval); // if cactus offscree remove
                 if (speedcac < 32) {
-                    speedcac = 15 + score / 200* scale;
+                    speedcac = (16 + score / 200) * scale;
                 }
 
                 let canSpawnNewCactus = true;
                 if (cacti.length > 0) {
                     const rightmostCactus = cacti[cacti.length - 1];
-                    const distanceFromRightEdge = SCREEN_WIDTH - (rightmostCactus.x);
-                    if (distanceFromRightEdge < 950* scale) {
+                    const distanceFromRightEdge = SCREEN_WIDTH - (rightmostCactus.x); // calculate if we can spawn a new cactus
+                    if (distanceFromRightEdge < 950 * scale) {
                         canSpawnNewCactus = false;
                     }
                 }
@@ -292,17 +293,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //#region Buttons/Keys
 
-        
+
 
         function resetGame() {
             ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
             score = 0;
-            speedcac = 15;
+            speedcac = 16;
             cacti = [];
             gameState = 'running';
             backgroundMusic[0].play();
-
 
             requestAnimationFrame(gameLoop);
         }
@@ -317,14 +317,13 @@ document.addEventListener('DOMContentLoaded', function () {
         gameCanvas.addEventListener('click', function (event) {
             if (gameState !== 'ended') {
                 dino.jump();
-                return;
             }
         });
-        document.getElementById('replayButton').addEventListener('click', function() {
-            resetGame(); // Your game's reset function
-            this.style.display = 'none'; // Hide the button again
-          });
-        
+        document.getElementById('replayButton').addEventListener('click', function () {
+            resetGame(); 
+            this.style.display = 'none'; 
+        });
+
         //#endregion
         requestAnimationFrame(gameLoop);
     }

@@ -18,9 +18,9 @@ html {
   border-radius: 1rem;
   width: 100%;
   height: auto;
-  max-width: 1200px; /* Max width */
-  display: block; /* Prevent inline spacing */
-  margin: 0 auto; /* Centering if needed */
+  max-width: 1200px; 
+  display: block; 
+  margin: 0 auto;
 }
 
 #highScoreContainer {
@@ -73,4 +73,17 @@ margin-top: 1rem;
   border-radius: .2rem;
 
   font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .game-instructions, #gameTitle, #playButton, #replayButton,#highScoreDisplay {
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 1000px) {
+  .game-instructions, #gameTitle, #playButton, #replayButton,#highScoreDisplay {
+    font-size: 1.2rem;
+  }
 }
